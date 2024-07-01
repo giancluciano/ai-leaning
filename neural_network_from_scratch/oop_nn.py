@@ -10,7 +10,7 @@ seed(0)
 
 from models import NeuralNetwork
 
-BATCH_LEN = 10
+BATCH_LEN = 1000
 INTERATIONS = 10000
 N_CLASSES = 2
 
@@ -20,18 +20,18 @@ train_data, target = vertical_data(BATCH_LEN, N_CLASSES)
 #pyplot.scatter(train_data[:,0], train_data[:,1], c=y, cmap='brg')
 #pyplot.show()
 test_data = vertical_data(10, 2)
-
-print("relu: ")
-seed(0)
-with cProfile.Profile() as pr:
-    nn = NeuralNetwork(layers_shape = (2,4,4, N_CLASSES)) # layers shape is a tuple of int (number of neurons for each layer)
-    nn.relu_train(train_data, target, INTERATIONS)
-
-    print(f"{pstats.Stats(pr).total_tt:.4} seconds, {pstats.Stats(pr).total_calls} function calls")
-    # best loss 0.11168550211891784
-    # best accuracy 0.955
-    # 6.963818391000001 seconds, 2412600 function calls
-
+# 
+# print("train: ")
+# seed(0)
+# with cProfile.Profile() as pr:
+#     nn = NeuralNetwork(layers_shape = (2,1,1, N_CLASSES)) # layers shape is a tuple of int (number of neurons for each layer)
+#     nn.train(train_data, target, INTERATIONS)
+# 
+#     print(f"{pstats.Stats(pr).total_tt:.4} seconds, {pstats.Stats(pr).total_calls} function calls")
+#     # best loss 0.11168550211891784
+#     # best accuracy 0.955
+#     # 6.963818391000001 seconds, 2412600 function calls
+# 
 print("softmax: ")
 seed(0)
 with cProfile.Profile() as pr:
@@ -43,3 +43,6 @@ with cProfile.Profile() as pr:
     # best accuracy 0.955
     # 6.963818391000001 seconds, 2412600 function calls
 
+# can haskell deal with a large amount of data if you have to interate it using recursion?
+# do you think haskell unique propreties would be helpfull to implement any type of machine learning algo?
+# since haskell uses a lot of recursion, does it have any 
