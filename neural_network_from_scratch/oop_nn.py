@@ -42,7 +42,3 @@ with cProfile.Profile() as pr:
     # best loss 0.11168550211891784
     # best accuracy 0.955
     # 6.963818391000001 seconds, 2412600 function calls
-
-# can haskell deal with a large amount of data if you have to interate it using recursion?
-# do you think haskell unique propreties would be helpfull to implement any type of machine learning algo?
-# since haskell uses a lot of recursion, does it have any 

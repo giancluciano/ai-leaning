@@ -1,3 +1,9 @@
 torch 
 torchvision 
 torchaudio
+kaggle
+scikit-learn
+pandas
+ray[tune]
+matplotlib
+hyperopt

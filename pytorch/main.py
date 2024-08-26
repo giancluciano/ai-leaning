@@ -31,9 +31,9 @@ class NeuralNetwork(nn.Module):
     def __init__(self):
         super().__init__()
         self.linear_stack = nn.Sequential(
-            nn.Linear(2, 4),
-            nn.Linear(4, 4),
-            nn.Linear(4, 2),
+            nn.Linear(2, 16),
+            nn.Linear(16, 16),
+            nn.Linear(16, 2),
         )
         self.double()
 
@@ -60,6 +60,8 @@ for i in range(0, INTERATIONS):
 
     running_loss += loss.item()
     if i % BATCH_LEN == BATCH_LEN-1:
-        last_loss = running_loss / BATCH_LEN # loss per batch
-        print('  batch {} loss: {}'.format(i + 1, last_loss))
+        #import ipdb; ipdb.set_trace()
+        last_accuracy = torch.sum(outputs.max(1).indices == target)/ (BATCH_LEN*2)
+        last_loss = running_loss / (BATCH_LEN*2) # loss per batch
+        print('  batch {} loss: {} accuracy: {:%}'.format(i + 1, last_loss, last_accuracy))
         running_loss = 0.
