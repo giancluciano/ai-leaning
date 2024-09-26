@@ -9,13 +9,16 @@ device = "cuda"
 train = pd.read_csv('data/titanic/train.csv')
 FEATURE_COLUMNS = ['Pclass', 'Sex', 'Fare']
 TARGET_COLUMN = ['Survived']
+EXTRA_FEATURE_COLUMNS = ['Ticket', 'Age'] + FEATURE_COLUMNS
 
 ## INPUTS
 train['Sex'] = le.fit_transform(train['Sex'])
+train['Ticket'] = le.fit_transform(train['Ticket'])
+train['Age'] = train['Age'].fillna(0)
 train.describe(include='all')
-train[FEATURE_COLUMNS + TARGET_COLUMN].corr()[TARGET_COLUMN]
+train[EXTRA_FEATURE_COLUMNS + TARGET_COLUMN].corr()[TARGET_COLUMN]
 
-input = train[FEATURE_COLUMNS]
+input = train[EXTRA_FEATURE_COLUMNS]
 input = torch.from_numpy(input.to_numpy()).to(device)
 
 
@@ -32,7 +35,7 @@ class NeuralNetwork(nn.Module):
     def __init__(self):
         super().__init__()
         self.linear_stack = nn.Sequential(
-            nn.Linear(3, 64),
+            nn.Linear(5, 64),
             nn.ReLU(),
             nn.Linear(64, 64),
             nn.ReLU(),

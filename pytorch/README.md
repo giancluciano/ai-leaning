@@ -10,3 +10,7 @@ https://www.kaggle.com/competitions/titanic/
   batch 177309 loss: 0.38271538195122684 accuracy 84.399557%
   batch 178200 loss: 0.38147919952587506 accuracy 84.511787%
 ```
+
+Kaggle best entry: 0.78229
+
+https://www.kaggle.com/competitions/titanic/leaderboard
